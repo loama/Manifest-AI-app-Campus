@@ -18,25 +18,25 @@ async function run() {
   const cloneRepoOnAppFolder = require('./3-clone-repo-on-app-folder')
   await cloneRepoOnAppFolder(projectName)
 
-  /* await new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('Paused for 5 seconds');
-      resolve();
-    }, 5000);
-  });
-  
-  await installDependenciesOfFrontend()
-  // await startDevServer()
+  const installDependenciesOfFrontend = require('./4-install-dependencies-of-frontend')
+  await installDependenciesOfFrontend(projectName)
+
+  const startDevServer = require('./5-start-dev-server')
+  await startDevServer(projectName)
+
   async function openDefaultBrowser() {
     const open = require('open');
-    //  await open('http://localhost:3000');
+    await open('http://localhost:3000');
   }
-  
-  await openDefaultBrowser();
-  */
-  // await initGitProject();
+  await openDefaultBrowser()
+
+  const initGitProject = require('./6-init-git-project')
+  await initGitProject(projectName);
 }
 
-run().catch((err) => {
-  console.error(err);
-})
+//run().catch((err) => {
+//  console.error(err);
+//})
+
+const initGitProject = require('./6-init-git-project')
+initGitProject(projectName)

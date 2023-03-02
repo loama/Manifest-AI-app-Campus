@@ -1,16 +1,15 @@
-async function initGitProject() {
-  const { exec } = require('child_process');
-  const { Octokit } = require("@octokit/core");
-  const octokit = new Octokit({ auth: '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' });
-  const path = require('path');
+const { exec } = require('child_process');
+const { Octokit } = require("@octokit/core");
+const octokit = new Octokit({ auth: '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' });
+const path = require('path');
 
-  process.chdir(path.join(__dirname, '/apps/', projectName))
+async function initGitProject(projectName) {
+  process.chdir('./')
 
   // Initialize a new Git project in the app folder
   await new Promise((resolve, reject) => {
     console.log('initialize git project')
     console.log(exec('pwd'))
-    console.log('137')
     exec(`git init`, (error, stdout, stderr) => {
       if (error) {
         console.error(`Failed to initialize Git project: ${error}`);
@@ -58,6 +57,7 @@ async function initGitProject() {
   });
   const gitUrl = response.data.ssh_url;
   */
+
   const gitUrl = 'https://github.com/loama/Manifest-AI-app-Campus.git'
   console.log(`New repository created on GitHub: ${gitUrl}`);
 
@@ -72,7 +72,8 @@ async function initGitProject() {
 
       console.log(`Remote Git repository added successfully: ${stdout}`);
 
-      exec(`git branch -M main && git push -u origin main`, (error, stdout, stderr) => {
+      // && git push -u origin main
+      exec(`git branch -M main`, (error, stdout, stderr) => {
         if (error) {
           console.error(`Failed to push changes to Git repository: ${error}`);
           reject(error);
@@ -86,5 +87,4 @@ async function initGitProject() {
   });
 }
 
-
-
+module.exports = initGitProject
