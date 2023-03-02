@@ -9,7 +9,6 @@ async function initGitProject(projectName) {
   // Initialize a new Git project in the app folder
   await new Promise((resolve, reject) => {
     console.log('initialize git project')
-    console.log(exec('pwd'))
     exec(`git init`, (error, stdout, stderr) => {
       if (error) {
         console.error(`Failed to initialize Git project: ${error}`);
