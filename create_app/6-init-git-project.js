@@ -1,10 +1,9 @@
 const { exec } = require('child_process');
 const { Octokit } = require("@octokit/core");
 const octokit = new Octokit({ auth: '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' });
-const path = require('path');
 
 async function initGitProject(projectName) {
-  process.chdir('./')
+  process.chdir('./apps/' + projectName)
 
   // Initialize a new Git project in the app folder
   await new Promise((resolve, reject) => {
@@ -50,14 +49,14 @@ async function initGitProject(projectName) {
   });
 
   // Create a new repository in the manifest_ai organization on GitHub
-  /* const response = await octokit.request('POST /user/repos', {
+  const response = await octokit.request('POST /orgs/:org/repos', {
+    org: 'manifest-ai',
     name: 'Manifest-AI-app-' + projectName,
     private: false,
   });
   const gitUrl = response.data.ssh_url;
-  */
 
-  const gitUrl = 'https://github.com/loama/Manifest-AI-app-Campus.git'
+  // const gitUrl = 'https://github.com/loama/Manifest-AI-app-Campus.git'
   console.log(`New repository created on GitHub: ${gitUrl}`);
 
   // Push the changes to the new repository
@@ -70,18 +69,6 @@ async function initGitProject(projectName) {
       }
 
       console.log(`Remote Git repository added successfully: ${stdout}`);
-
-      // && git push -u origin main
-      exec(`git branch -M main`, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`Failed to push changes to Git repository: ${error}`);
-          reject(error);
-          return;
-        }
-
-        console.log(`Changes pushed to Git repository successfully: ${stdout}`);
-        resolve();
-      });
     });
   });
 }

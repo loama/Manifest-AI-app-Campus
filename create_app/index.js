@@ -38,5 +38,6 @@ async function run() {
 //  console.error(err);
 //})
 
-const initGitProject = require('./6-init-git-project')
-initGitProject(projectName)
+const pushToGithub = require('./7-push-to-github')
+console.log('abc')
+pushToGithub(projectName)
