@@ -4,8 +4,8 @@
   "description": "",
   "main": "create_app.js",
   "scripts": {
-    "start": "node create_app.js",
-    "dev": "nodemon create_app.js",
+    "start": "node index.js",
+    "dev": "source ./local.env && nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -13,9 +13,11 @@
   "dependencies": {
     "@octokit/core": "^4.2.0",
     "axios": "^1.3.4",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "nodemon": "^2.0.20",
     "open": "^8.4.2",
-    "simple-git": "^3.16.1"
+    "simple-git": "^3.16.1",
+    "throng": "^5.0.0"
   }
 }

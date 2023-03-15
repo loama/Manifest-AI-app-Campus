@@ -1,7 +1,7 @@
 async function initGitProject() {
   const { exec } = require('child_process');
   const { Octokit } = require("@octokit/core");
-  const octokit = new Octokit({ auth: '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' });
+  const octokit = new Octokit({ auth: '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' });
   const path = require('path');
 
   process.chdir(path.join(__dirname, '/apps/', projectName))

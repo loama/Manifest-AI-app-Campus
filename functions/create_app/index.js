@@ -9,14 +9,20 @@ const functionalities_description = `
 `
 
 async function run() {
-  // const createOrganizationAndProjects = require('./1-create-organization-and-projects')
-  // createOrganizationAndProjects(projectName)
+  // const createSupabaseOrganizationAndProjects = require('./1-create-organization-and-projects')
+  // createSupabaseOrganizationAndProjects(projectName)
 
   const createAppsFolders = require('./2-create-apps-folders')
   createAppsFolders(projectName)
 
   const cloneRepoOnAppFolder = require('./3-clone-repo-on-app-folder')
   await cloneRepoOnAppFolder(projectName)
+
+  const initGitProject = require('./6-init-git-project')
+  await initGitProject(projectName);
+
+  const pushToGithub = require('./7-push-to-github')
+  pushToGithub(projectName)
 
   const installDependenciesOfFrontend = require('./4-install-dependencies-of-frontend')
   await installDependenciesOfFrontend(projectName)
@@ -29,15 +35,9 @@ async function run() {
     await open('http://localhost:3000');
   }
   await openDefaultBrowser()
-
-  const initGitProject = require('./6-init-git-project')
-  await initGitProject(projectName);
 }
 
-//run().catch((err) => {
-//  console.error(err);
-//})
+run().catch((err) => {
+  console.error(err);
+})
 
-const pushToGithub = require('./7-push-to-github')
-console.log('abc')
-pushToGithub(projectName)

@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 const { Octokit } = require("@octokit/core");
-const octokit = new Octokit({ auth: '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' });
+const octokit = new Octokit({ auth: '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' });
 
 async function initGitProject(projectName) {
   process.chdir('./apps/' + projectName)
@@ -20,34 +20,6 @@ async function initGitProject(projectName) {
     });
   });
 
-  // Add all files to the Git staging area
-  await new Promise((resolve, reject) => {
-    exec(`git add .`, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Failed to add files to Git staging area: ${error}`);
-        reject(error);
-        return;
-      }
-
-      console.log(`Files added to Git staging area successfully: ${stdout}`);
-      resolve();
-    });
-  });
-
-  // Commit the changes with a message
-  await new Promise((resolve, reject) => {
-    exec(`git commit -m "start app with manifest ai"`, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Failed to commit changes: ${error}`);
-        reject(error);
-        return;
-      }
-
-      console.log(`Changes committed successfully: ${stdout}`);
-      resolve();
-    });
-  });
-
   // Create a new repository in the manifest_ai organization on GitHub
   const response = await octokit.request('POST /orgs/:org/repos', {
     org: 'manifest-ai',
@@ -61,7 +33,7 @@ async function initGitProject(projectName) {
 
   // Push the changes to the new repository
   await new Promise((resolve, reject) => {
-    exec(`git remote add origin ${gitUrl}`, (error, stdout, stderr) => {
+    exec(`git remote rm origin && git remote add origin ${gitUrl}`, (error, stdout, stderr) => {
       if (error) {
         console.error(`Failed to add remote Git repository: ${error}`);
         reject(error);
@@ -69,6 +41,7 @@ async function initGitProject(projectName) {
       }
 
       console.log(`Remote Git repository added successfully: ${stdout}`);
+      resolve();
     });
   });
 }
