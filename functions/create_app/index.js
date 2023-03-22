@@ -8,7 +8,7 @@ const functionalities_description = `
   - Chat with students and teachers
 `
 
-async function run() {
+async function run () {
   // const createSupabaseOrganizationAndProjects = require('./1-create-organization-and-projects')
   // createSupabaseOrganizationAndProjects(projectName)
 
@@ -19,7 +19,7 @@ async function run() {
   await cloneRepoOnAppFolder(projectName)
 
   const initGitProject = require('./6-init-git-project')
-  await initGitProject(projectName);
+  await initGitProject(projectName)
 
   const pushToGithub = require('./7-push-to-github')
   pushToGithub(projectName)
@@ -30,14 +30,13 @@ async function run() {
   const startDevServer = require('./5-start-dev-server')
   await startDevServer(projectName)
 
-  async function openDefaultBrowser() {
-    const open = require('open');
-    await open('http://localhost:3000');
+  async function openDefaultBrowser () {
+    const open = require('open')
+    await open('http://localhost:3000')
   }
   await openDefaultBrowser()
 }
 
 run().catch((err) => {
-  console.error(err);
+  console.error(err)
 })
-

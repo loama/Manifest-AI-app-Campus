@@ -1,6 +1,6 @@
 // const log = require('./log')
 
-function main(req, res, payload) {
+function main (req, res, payload) {
   const response = {
     result: payload.result, // success or error
     message: payload.message, // detail about the result "order created", "user logged in"
@@ -17,7 +17,7 @@ function main(req, res, payload) {
   res.status(status).send(response)
 }
 
-function index(req, res) {
+function index (req, res) {
   main(req, res, {
     status: 200,
     result: 'success', // success or error
@@ -26,7 +26,7 @@ function index(req, res) {
   })
 }
 
-function indexV1(req, res) {
+function indexV1 (req, res) {
   main(req, res, {
     status: 200,
     result: 'success',
@@ -35,7 +35,7 @@ function indexV1(req, res) {
   })
 }
 
-function notFound(req, res) {
+function notFound (req, res) {
   main(req, res, {
     status: 404,
     result: 'error', // success or error

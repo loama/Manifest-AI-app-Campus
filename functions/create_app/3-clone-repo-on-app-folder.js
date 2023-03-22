@@ -1,7 +1,7 @@
 function cloneRepoOnAppFolder(projectName) {
   const { exec } = require('child_process')
   const repoUrl = 'https://github.com/Manifest-AI/monorepo-starter'
-  const clonePath = `./apps/${projectName}`
+  const clonePath = `./cloned-apps/${projectName}`
 
   return new Promise((resolve, reject) => {
     exec(`git clone ${repoUrl} ${clonePath}`, (error, stdout) => {

@@ -1,8 +1,8 @@
-function createAppsFolders(projectName) {
+function createAppsFolders (projectName) {
   const fs = require('fs')
   const path = require('path')
 
-  const appDir = `@/cloned-apps/${projectName}`
+  const appDir = `./cloned-apps/${projectName}`
   const fullAppDir = path.resolve(appDir) // ensure the directory path is fully constructed
 
   fs.mkdir(fullAppDir, { recursive: true }, (err) => {
